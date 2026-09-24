@@ -25,9 +25,6 @@
                 <p class="text-xs text-indigo-200">Control de pagos y alertas</p>
             </div>
             <div class="flex items-center gap-2">
-                <button id="btnInstalar" class="hidden bg-indigo-700 hover:bg-indigo-800 text-white px-3 py-2 rounded-xl text-sm font-medium transition items-center gap-1">
-                    <i class="fa-solid fa-download"></i> Instalar
-                </button>
                 <button type="button" onclick="window.abrirModalForm()" class="bg-indigo-500 hover:bg-indigo-400 text-white px-3.5 py-2 rounded-xl text-sm font-medium shadow transition flex items-center gap-1 active:scale-95">
                     <i class="fa-solid fa-plus"></i> Nuevo
                 </button>
@@ -111,7 +108,7 @@
 
     <!-- Lógica Principal -->
     <script>
-        let creditos = JSON.parse(localStorage.getItem('mis_creditos_v3')) || [];
+        let creditos = JSON.parse(localStorage.getItem('mis_creditos_v4')) || [];
 
         window.abrirModalForm = function(id = null) {
             const modal = document.getElementById('modalCredito');
@@ -171,7 +168,7 @@
                 creditos.push(nuevoCredito);
             }
 
-            localStorage.setItem('mis_creditos_v3', JSON.stringify(creditos));
+            localStorage.setItem('mis_creditos_v4', JSON.stringify(creditos));
             window.cerrarModalForm();
             renderizarApp();
         };
@@ -179,7 +176,7 @@
         window.eliminarCredito = function(id) {
             if (confirm('¿Estás seguro de eliminar este crédito?')) {
                 creditos = creditos.filter(c => c.id !== id);
-                localStorage.setItem('mis_creditos_v3', JSON.stringify(creditos));
+                localStorage.setItem('mis_creditos_v4', JSON.stringify(creditos));
                 renderizarApp();
             }
         };
@@ -188,7 +185,7 @@
             const cred = creditos.find(c => c.id === id);
             if(cred) {
                 cred.pagado = !cred.pagado;
-                localStorage.setItem('mis_creditos_v3', JSON.stringify(creditos));
+                localStorage.setItem('mis_creditos_v4', JSON.stringify(creditos));
                 renderizarApp();
             }
         };
